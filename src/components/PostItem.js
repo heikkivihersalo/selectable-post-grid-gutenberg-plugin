@@ -62,7 +62,7 @@ export default function PostItem( { post, selected, selectCallback } ) {
 					/>
 				) }
 				<h3 className="posts-grid-item__title">{ title }</h3>
-				<time className="posts-grid-item__date" datetime={ date }>
+				<time className="posts-grid-item__date" dateTime={ date }>
 					{ formatDateString( date ) }
 				</time>
 				<ul className="posts-grid-item__categories">
