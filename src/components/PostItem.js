@@ -67,7 +67,7 @@ export default function PostItem( { post, selected, selectCallback } ) {
 				</time>
 				<ul className="posts-grid-item__categories">
 					{ categories.map( ( category ) => (
-						<li key={ category.id }>
+						<li key={ category.term_id }>
 							<span>{ category.name }</span>
 						</li>
 					) ) }
