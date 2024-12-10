@@ -76,7 +76,7 @@ export default function PostItem( { post, selected, selectCallback } ) {
 					<span className="posts-grid-item__link">
 						<span>{ __( 'Read more', 'posts-grid-test' ) }</span>
 						<svg
-							class="posts-grid-item__arrow"
+							className="posts-grid-item__arrow"
 							width="12"
 							height="18"
 							viewBox="0 0 12 18"
