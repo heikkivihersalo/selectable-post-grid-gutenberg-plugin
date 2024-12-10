@@ -27,8 +27,6 @@ export default function PostItem( { post, selected, selectCallback } ) {
 		date,
 	} = post;
 
-	console.log( post );
-
 	const formatDateString = ( ISODate ) => {
 		const date = new Date( ISODate );
 		return `${ date.getDate() }.${
