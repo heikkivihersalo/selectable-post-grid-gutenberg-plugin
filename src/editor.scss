@@ -1,0 +1,37 @@
+.posts-grid-item {
+    position: relative;
+}
+
+.posts-grid-item:hover {
+    cursor: initial;
+}
+
+.posts-grid-item__select-wrapper {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+
+    width: fit-content !important;
+}
+
+.posts-grid-item__select-label {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.posts-grid-item__select-input {
+    width: 2rem;
+    height: 2rem;
+}
+
+.posts-grid-item__categories > li > span {
+    color: hsla(0, 0%, 0%, 0.55);
+    text-decoration: none;
+    font-size: var(--wp--preset--font-size--small);
+    text-transform: uppercase;
+}

@@ -1,0 +1,99 @@
+.posts-grid {
+    --_background-color: hsla(0, 0%, 95%, 1);
+    --_button-text-color: hsla(0, 0%, 0%, 0.55);
+    --_icon-color: var(--_button-text-color);
+
+    list-style: none;
+    padding: 0;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: var(--wp--preset--spacing--40);
+
+    position: relative;
+
+    @media screen and (min-width: 600px) {
+        grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    }
+}
+
+.posts-grid-item {
+    display: grid;
+    grid-template-rows: fit-content(100%) fit-content(100%) auto fit-content(100%) fit-content(100%);
+    background-color: var(--_background-color);
+
+    min-height: 615px;
+}
+
+.posts-grid-item:hover {
+    --_background-color: hsla(0, 0%, 100%, 1);
+    --_button-text-color: hsla(0, 0%, 0%, 1);
+    box-shadow: 4px 4px 40px 0px hsla(0, 0%, 0%, 0.1);
+    cursor: pointer;
+}
+
+.posts-grid-item:hover .posts-grid-item__link > span {
+    border-bottom: 1px solid hsla(0, 0%, 0%, 1);
+}
+
+.posts-grid-item > *:not(.posts-grid-item__image) {
+    width: 90%;
+    margin-inline: auto;
+}
+
+.posts-grid-item__image {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.posts-grid-item__title {
+    font-size: var(--wp--preset--font-size--large);
+    font-weight: bold;
+
+    margin-block-start: var(--wp--preset--spacing--30);
+    margin-block-end: var(--wp--preset--spacing--20);
+}
+
+.posts-grid-item__date {
+    font-size: var(--wp--preset--font-size--medium);
+}
+
+.posts-grid-item__categories {
+    display: flex;
+    gap: 0.375em;
+    margin-block-end: var(--wp--preset--spacing--20);
+    list-style: none;
+    padding: 0;
+}
+
+.posts-grid-item__categories a {
+    color: hsla(0, 0%, 0%, 0.55);
+    text-decoration: none;
+    font-size: var(--wp--preset--font-size--small);
+    text-transform: uppercase;
+}
+
+.posts-grid-item__button {
+    border-top: 1px solid hsla(0, 0%, 0%, 0.1);
+}
+
+.posts-grid-item__link {
+    display: flex;
+    align-items: center;
+    padding-block: var(--wp--preset--spacing--30);
+
+    font-size: var(--wp--preset--font-size--medium);
+    text-decoration: none;
+    font-weight: bolder;
+    color: var(--_button-text-color);
+}
+
+.posts-grid-item__arrow {
+    margin-inline-start: auto;
+    color: var(--_icon-color);
+
+    width: 0.875rem;
+    height: 0.875rem;
+}
