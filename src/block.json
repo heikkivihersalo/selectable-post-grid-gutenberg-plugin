@@ -9,7 +9,12 @@
 	"description": "Example block scaffolded with Create Block tool.",
 	"example": {},
 	"supports": {
-		"html": false
+		"anchor": true,
+		"html": true,
+		"spacing": {
+			"margin": ["top", "bottom"],
+			"padding": true
+		}
 	},
 	"textdomain": "posts-grid-test",
 	"editorScript": "file:./index.js",
