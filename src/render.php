@@ -15,6 +15,14 @@
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 
+$sanitized_attributes = wp_kses_data(
+    get_block_wrapper_attributes(
+        array(
+            'class' => 'posts-grid',
+        )
+    )
+);
+
 $selected_posts = $attributes['selectedPosts'];
 
 $query = new WP_Query(array(
@@ -25,7 +33,7 @@ $query = new WP_Query(array(
 
 ?>
 <?php if ($query->have_posts()) : ?>
-    <ul class="posts-grid">
+    <ul <?php echo $sanitized_attributes; ?>>
         <?php if (count($selected_posts) === 0) : ?>
             <li>
                 <p><?php _e('No posts selected', 'posts-grid-test'); ?></p>
