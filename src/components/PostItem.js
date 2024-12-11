@@ -18,7 +18,12 @@ import '../editor.scss';
  * @param {Function} props.selectCallback
  * @return {Element} Element to render.
  */
-export default function PostItem( { post, selected, selectCallback } ) {
+export default function PostItem( {
+	post,
+	selected,
+	selectCallback,
+	showSelect,
+} ) {
 	const [ isSelected, setIsSelected ] = useState( selected );
 
 	const {
@@ -90,22 +95,24 @@ export default function PostItem( { post, selected, selectCallback } ) {
 						</svg>
 					</span>
 				</div>
-				<label
-					className="posts-grid-item__select-wrapper"
-					data-selected={ selected }
-				>
-					<span className="posts-grid-item__select-label">
-						{ __( 'Select post', 'posts-grid-test' ) }
-					</span>
-					<input
-						type="checkbox"
-						className="posts-grid-item__select-input"
-						checked={ isSelected }
-						onChange={ ( event ) =>
-							selectCallback( event, post.id )
-						}
-					/>
-				</label>
+				{ showSelect ? (
+					<label
+						className="posts-grid-item__select-wrapper"
+						data-selected={ selected }
+					>
+						<span className="posts-grid-item__select-label">
+							{ __( 'Select post', 'posts-grid-test' ) }
+						</span>
+						<input
+							type="checkbox"
+							className="posts-grid-item__select-input"
+							checked={ isSelected }
+							onChange={ ( event ) =>
+								selectCallback( event, post.id )
+							}
+						/>
+					</label>
+				) : null }
 			</article>
 		</li>
 	);
