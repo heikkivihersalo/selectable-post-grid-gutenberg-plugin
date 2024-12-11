@@ -97,15 +97,15 @@ export default function PostItem( {
 				</div>
 				{ showSelect ? (
 					<label
-						className="posts-grid-item__select-wrapper"
+						className="editor-posts-grid-item__select-wrapper"
 						data-selected={ selected }
 					>
-						<span className="posts-grid-item__select-label">
+						<span className="editor-posts-grid-item__select-label">
 							{ __( 'Select post', 'posts-grid-test' ) }
 						</span>
 						<input
 							type="checkbox"
-							className="posts-grid-item__select-input"
+							className="editor-posts-grid-item__select-input"
 							checked={ isSelected }
 							onChange={ ( event ) =>
 								selectCallback( event, post.id )
