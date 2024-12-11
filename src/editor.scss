@@ -1,4 +1,22 @@
 /**
+ * Posts Grid Item Styling Fixes
+ */
+ .posts-grid-item {
+    position: relative;
+}
+
+.posts-grid-item:hover {
+    cursor: initial;
+}
+
+.posts-grid-item__categories > li > span {
+    color: hsla(0, 0%, 0%, 0.55);
+    text-decoration: none;
+    font-size: var(--wp--preset--font-size--small);
+    text-transform: uppercase;
+}
+
+/**
  * Editor Filters
  */
 .editor-posts-grid-controls {
@@ -45,10 +63,9 @@
 }
 
 /**
- * Editor Post Select Styling
+ * Editor Select Styling
  */
-
- .posts-grid-item__select-wrapper {
+.editor-posts-grid-item__select-wrapper {
     position: absolute;
     top: 2rem;
     right: 2rem;
@@ -56,7 +73,7 @@
     width: fit-content !important;
 }
 
-.posts-grid-item__select-label {
+.editor-posts-grid-item__select-label {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
     height: 1px;
@@ -66,25 +83,7 @@
     width: 1px;
 }
 
-.posts-grid-item__select-input {
+.editor-posts-grid-item__select-input {
     width: 2rem;
     height: 2rem;
-}
-
-/**
- * Posts Grid Item Styling Fixes
- */
-.posts-grid-item {
-    position: relative;
-}
-
-.posts-grid-item:hover {
-    cursor: initial;
-}
-
-.posts-grid-item__categories > li > span {
-    color: hsla(0, 0%, 0%, 0.55);
-    text-decoration: none;
-    font-size: var(--wp--preset--font-size--small);
-    text-transform: uppercase;
 }
