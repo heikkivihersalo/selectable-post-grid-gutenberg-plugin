@@ -57,11 +57,12 @@ export default function Edit( props ) {
 				limit={ limit }
 				setLimit={ setLimit }
 			/>
-			{ isLoading && <p>{ __( 'Loading posts...' ) }</p> }
 
 			{ /**
 			 * Handle the empty and loading states
 			 */ }
+			{ isLoading && <p>{ __( 'Loading posts...' ) }</p> }
+
 			{ ! isLoading && data.length === 0 && (
 				<p>
 					{ __(
