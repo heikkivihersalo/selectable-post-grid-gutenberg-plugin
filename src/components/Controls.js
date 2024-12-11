@@ -24,9 +24,9 @@ export default function Controls( {
 		return null;
 	}
 
-    /**
-     * !NOTE These could be migrated to use Popover API if needed.
-     */
+	/**
+	 * !NOTE These could be migrated to use Popover API if needed.
+	 */
 	return (
 		<div className="editor-posts-grid-controls">
 			<div className="editor-posts-grid-controls__search">
