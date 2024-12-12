@@ -10,9 +10,15 @@ This is a concept of an block with a grid of posts.
 
 2. Amount of columns is designed to scale with the screen and container width. One item will always have minimum width of 420px, and the rest will scale with the screen. This could be moved to a setting if desired.
 
-3. Depending on the desired behaviour, there are things that can be done differently. For example I guess the tutorial approach would have been choosing the posts from the `InspectorControls` but my approach uses customized UI to select the posts from the block itself. Filter controls could also be moved to use the Popover API if it desired to have controls move with the user flow.
+3. Depending on the desired behaviour, there are things that can be done differently. For example I guess the tutorial approach would have been choosing the posts from the `InspectorControls` but my approach uses customized UI to select the posts from the block itself.
 
-4. There are editor styling improvements that can be made if desired. For example custom checkbox styles could be cool addition.
+4. There are editor styling improvements that can be made if desired. For example custom checkbox styles could be cool addition. This could also include badges like `selected` to indicate that the post is selected.
+
+5. Filtering could be improved by adding more filters. For example filtering by category or tag could be added. This could be done by adding a dropdown or similar to the filter controls.
+
+6. Adding all the filtering options to the block toolbar could be investigated. This could make the experience feel more like Gutenberg.
+
+7. Not currently a problem but performance improvements could be investigated with useMemo and/or useCallback. Also merging `getEntityRecords` calls together or finding other ways to separate the different data fetches can be investigated.
 
 ## Installation
 
