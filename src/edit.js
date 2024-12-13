@@ -27,8 +27,10 @@ export default function Edit( props ) {
 	const [ limit, setLimit ] = useState( 3 );
 	const [ search, setSearch ] = useState( '' );
 	const { data, isLoading } = usePosts( {
-		limit,
-		search,
+		filter: {
+			limit,
+			search,
+		},
 		selected: selectedPosts,
 		blockSelected,
 	} );
