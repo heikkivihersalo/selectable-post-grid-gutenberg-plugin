@@ -12,9 +12,10 @@ export function getPosts( { selectCallbackFn, selectedPosts, filter } ) {
 	const { limit, search } = filter;
 
 	const query = {
-		per_page: limit - selectedPosts.length <= 0
-			? 1 // Make sure that we always fetch at least one post
-			: limit - selectedPosts.length, // Fetch the remaining posts if above condition is not met
+		per_page:
+			limit - selectedPosts.length <= 0
+				? 1 // Make sure that we always fetch at least one post
+				: limit - selectedPosts.length, // Fetch the remaining posts if above condition is not met
 		search,
 		exclude: selectedPosts,
 	};
