@@ -10,17 +10,15 @@ import { getPosts, getSelectedPosts, mergePosts } from '../utils';
 
 /**
  * Hook to get posts
- * @param {number} perPage Number of posts to return per page
- * @param {string} search Search query
- * @param {Array} selected Selected posts
+ * @param {Object}  props
+ * @param {Object}  props.filter Filter options
+ * @param {Array}   props.selected Selected post ids
+ * @param {boolean} props.blockSelected Block selected posts
  * @return {Object} { data, isLoading, refetch }
  */
-export function usePosts( {
-	limit = 3,
-	search = '',
-	selected = [],
-	blockSelected = true,
-} ) {
+export function usePosts( { filter, selected = [], blockSelected } ) {
+	const { limit, search } = filter;
+
 	/**
 	 * Handle the data fetching
 	 */
@@ -29,7 +27,7 @@ export function usePosts( {
 			const { data: posts, hasResolved: postsHasResolved } = getPosts( {
 				selectCallbackFn: select,
 				selectedPosts: selected,
-				filter: { limit, search },
+				filter,
 			} );
 
 			const {
@@ -45,13 +43,11 @@ export function usePosts( {
 				return {
 					// To avoid showing too much posts in the grid, we'll only show the selected posts if the grid is full
 					posts:
-						limit - selectedPosts.length > 0 ||
-						search !== ''
+						limit - selectedPosts.length > 0 || search !== ''
 							? posts
 							: [],
 					// Always return selected posts
 					selectedPosts,
-					// This can be used to show a loading indicator
 					hasResolved: selectedPostsHasResolved && postsHasResolved,
 				};
 			}
@@ -82,7 +78,7 @@ export function usePosts( {
 	 * Return the data
 	 */
 	return {
-		data: mergePosts( { posts, selectedPosts, filter: { search, limit } } ),
+		data: mergePosts( { posts, selectedPosts, filter } ),
 		isLoading: ! hasResolved,
 		refetch,
 	};
