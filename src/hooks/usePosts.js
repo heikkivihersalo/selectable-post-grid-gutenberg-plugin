@@ -4,56 +4,55 @@
 import { useSelect, useDispatch } from '@wordpress/data';
 
 /**
+ * Internal Dependencies
+ */
+import { getPosts, getSelectedPosts, mergePosts } from '../utils';
+
+/**
  * Hook to get posts
  * @param {number} perPage Number of posts to return per page
  * @param {string} search Search query
  * @param {Array} selected Selected posts
  * @return {Object} { data, isLoading, refetch }
  */
-function usePosts( {
+export function usePosts( {
 	limit = 3,
 	search = '',
 	selected = [],
 	blockSelected = true,
 } ) {
 	/**
-	 * Handle the posts data fetching
+	 * Handle the data fetching
 	 */
 	const { posts, selectedPosts, hasResolved } = useSelect(
 		( select ) => {
-			const isFull = limit - selected.length <= 0; // Check if current grid is full
+			const { data: posts, hasResolved: postsHasResolved } = getPosts( {
+				selectCallbackFn: select,
+				selectedPosts: selected,
+				filter: { limit, search },
+			} );
 
-			const query = {
-				per_page: isFull ? 1 : limit - selected.length, // Make sure that we always fetch at least one post
-				search,
-				exclude: selected,
-			};
+			const {
+				data: selectedPosts,
+				hasResolved: selectedPostsHasResolved,
+			} = getSelectedPosts( {
+				selectCallbackFn: select,
+				selectedPosts: selected,
+			} );
 
-			const selectedPosts =
-				select( 'core' ).getEntityRecords( 'postType', 'post', {
-					include: selected,
-				} ) || [];
-
-			const posts =
-				select( 'core' ).getEntityRecords(
-					'postType',
-					'post',
-					query
-				) || [];
-
-			const hasResolved = select( 'core' ).hasFinishedResolution(
-				'getEntityRecords',
-				[ 'postType', 'post', query ]
-			);
-
+			// Handle the block selected state
 			if ( blockSelected ) {
 				return {
-					// Return all posts if grid is not full or search query is not empty
-					posts: ! isFull || search !== '' ? posts : [],
+					// To avoid showing too much posts in the grid, we'll only show the selected posts if the grid is full
+					posts:
+						limit - selectedPosts.length > 0 ||
+						search !== ''
+							? posts
+							: [],
 					// Always return selected posts
 					selectedPosts,
 					// This can be used to show a loading indicator
-					hasResolved,
+					hasResolved: selectedPostsHasResolved && postsHasResolved,
 				};
 			}
 
@@ -61,7 +60,7 @@ function usePosts( {
 			return {
 				posts: [],
 				selectedPosts,
-				hasResolved,
+				hasResolved: selectedPostsHasResolved && postsHasResolved,
 			};
 		},
 		[ limit, search, blockSelected ]
@@ -83,10 +82,8 @@ function usePosts( {
 	 * Return the data
 	 */
 	return {
-		data: [ ...selectedPosts, ...posts ], // Merge selected posts with rest of the posts
+		data: mergePosts( { posts, selectedPosts, filter: { search, limit } } ),
 		isLoading: ! hasResolved,
 		refetch,
 	};
 }
-
-export { usePosts };
