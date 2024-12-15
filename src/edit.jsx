@@ -35,6 +35,10 @@ export default function Edit( props ) {
 		blockSelected,
 	} );
 
+	const blockProps = useBlockProps( {
+		className: 'editor-posts-grid',
+	} );
+
 	const handleSelect = ( event, id ) => {
 		event.preventDefault();
 
@@ -46,7 +50,7 @@ export default function Edit( props ) {
 	};
 
 	return (
-		<div { ...useBlockProps( { className: 'editor-posts-grid' } ) }>
+		<div { ...blockProps }>
 			{ /**
 			 * !NOTE There is little bit of prop drilling here, but it's fine for this example.
 			 * Could be refactored to use context API or similar if needed and there
@@ -63,10 +67,14 @@ export default function Edit( props ) {
 			{ /**
 			 * Handle the empty and loading states
 			 */ }
-			{ isLoading && <p>{ __( 'Loading posts...' ) }</p> }
+			{ isLoading && (
+				<p data-testid="posts-grid-loader">
+					{ __( 'Loading posts...' ) }
+				</p>
+			) }
 
 			{ ! isLoading && data.length === 0 && (
-				<p>
+				<p data-testid="posts-grid-no-posts">
 					{ __(
 						'No posts selected. Click here to select the posts to show.'
 					) }
@@ -76,9 +84,9 @@ export default function Edit( props ) {
 			{ /**
 			 * If everything is loaded and there are posts to show, render the posts grid.
 			 */ }
-			<div className="posts-grid">
-				{ ! isLoading &&
-					data.map( ( post ) => (
+			{ ! isLoading && (
+				<div className="posts-grid" data-testid="posts-grid-list">
+					{ data.map( ( post ) => (
 						<PostItem
 							key={ post.id }
 							post={ post }
@@ -87,7 +95,8 @@ export default function Edit( props ) {
 							showSelect={ blockSelected }
 						/>
 					) ) }
-			</div>
+				</div>
+			) }
 		</div>
 	);
 }
