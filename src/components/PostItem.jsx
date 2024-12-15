@@ -6,6 +6,7 @@ import { useState, useEffect } from '@wordpress/element';
 /**
  * Internal dependencies
  */
+import { formatDateString } from '../utils';
 import placeholder from '../../public/placeholder.png';
 
 import '../editor.scss';
@@ -31,13 +32,6 @@ export default function PostItem( {
 		metadata: { featured_image: image, categories },
 		date,
 	} = post;
-
-	const formatDateString = ( ISODate ) => {
-		const date = new Date( ISODate );
-		return `${ date.getDate() }.${
-			date.getMonth() + 1
-		}.${ date.getFullYear() }`;
-	};
 
 	useEffect( () => {
 		setIsSelected( selected );
