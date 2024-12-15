@@ -23,9 +23,9 @@ describe( '#edit', () => {
 	beforeEach( () => {
 		// This is the default mock for the useSelect hook
 		mocksData.usePosts.mockReturnValue( {
-            data: [],
-            isLoading: false,
-        } );
+			data: [],
+			isLoading: false,
+		} );
 	} );
 
 	afterEach( () => {
@@ -39,9 +39,9 @@ describe( '#edit', () => {
 
 	it( 'should render the edit component with loader', () => {
 		mocksData.usePosts.mockReturnValue( {
-            data: [],
-            isLoading: true,
-        } );
+			data: [],
+			isLoading: true,
+		} );
 
 		render( <Edit { ...props } /> );
 		expect( screen.getByTestId( 'posts-grid-loader' ) ).toBeInTheDocument();
@@ -49,9 +49,9 @@ describe( '#edit', () => {
 
 	it( 'should render no posts found message', () => {
 		mocksData.usePosts.mockReturnValue( {
-            data: [],
-            isLoading: false,
-        } );
+			data: [],
+			isLoading: false,
+		} );
 
 		render( <Edit { ...props } /> );
 		expect(
@@ -59,59 +59,71 @@ describe( '#edit', () => {
 		).toBeInTheDocument();
 	} );
 
-    it( 'should render posts', () => {
-        mocksData.usePosts.mockReturnValue( {
-            data: POSTS,
-            isLoading: false,
-        } );
+	it( 'should render posts', () => {
+		mocksData.usePosts.mockReturnValue( {
+			data: POSTS,
+			isLoading: false,
+		} );
 
-        render( <Edit { ...props } /> );
-        expect( screen.getByText( 'Post 1' ) ).toBeInTheDocument();
-    } );
+		render( <Edit { ...props } /> );
+		expect( screen.getByText( 'Post 1' ) ).toBeInTheDocument();
+	} );
 } );
 
 describe( '#handleSelect', () => {
-    beforeEach( () => {
+	beforeEach( () => {
 		// This is the default mock for the useSelect hook
-        mocksData.usePosts.mockReturnValue( {
-            data: POSTS,
-            isLoading: false,
-        } );
+		mocksData.usePosts.mockReturnValue( {
+			data: POSTS,
+			isLoading: false,
+		} );
 	} );
 
 	afterEach( () => {
 		vi.restoreAllMocks();
 	} );
 
-    it('should add post to selected posts', () => {
-        const setAttributes = vi.fn();
-        render(<Edit {...{
-            attributes: { selectedPosts: [] },
-            setAttributes,
-            isSelected: true,
-        }} />);
+	it( 'should add post to selected posts', () => {
+		const setAttributes = vi.fn();
+		render(
+			<Edit
+				{ ...{
+					attributes: { selectedPosts: [] },
+					setAttributes,
+					isSelected: true,
+				} }
+			/>
+		);
 
-        const selectCheckbox = screen.getAllByTestId('posts-grid-item-select-button')[0];
-        selectCheckbox.click();
+		const selectCheckbox = screen.getAllByTestId(
+			'posts-grid-item-select-button'
+		)[ 0 ];
+		selectCheckbox.click();
 
-        expect(setAttributes).toHaveBeenCalledWith({
-            selectedPosts: [1]
-        });
-    });
+		expect( setAttributes ).toHaveBeenCalledWith( {
+			selectedPosts: [ 1 ],
+		} );
+	} );
 
-    it('should remove post from selected posts', () => {
-        const setAttributes = vi.fn();
-        render(<Edit {...{
-            attributes: { selectedPosts: [1,2] },
-            setAttributes,
-            isSelected: true,
-        }} />);
+	it( 'should remove post from selected posts', () => {
+		const setAttributes = vi.fn();
+		render(
+			<Edit
+				{ ...{
+					attributes: { selectedPosts: [ 1, 2 ] },
+					setAttributes,
+					isSelected: true,
+				} }
+			/>
+		);
 
-        const selectCheckbox = screen.getAllByTestId('posts-grid-item-select-button')[0];
-        selectCheckbox.click();
+		const selectCheckbox = screen.getAllByTestId(
+			'posts-grid-item-select-button'
+		)[ 0 ];
+		selectCheckbox.click();
 
-        expect(setAttributes).toHaveBeenCalledWith({
-            selectedPosts: [2]
-        });
-    });
-});
+		expect( setAttributes ).toHaveBeenCalledWith( {
+			selectedPosts: [ 2 ],
+		} );
+	} );
+} );

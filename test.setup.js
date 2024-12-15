@@ -15,5 +15,5 @@ vi.mock( '@wordpress/element', async () => ( {
 	useState: ( state ) => {
 		return [ state, vi.fn() ];
 	},
-    useEffect: vi.fn(),
+	useEffect: vi.fn(),
 } ) );
