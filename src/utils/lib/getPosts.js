@@ -40,14 +40,14 @@ export function getPosts( { selectCallbackFn, selectedPosts, filter } ) {
  * @return {Object} Query object
  */
 export function generateQuery( { limit, search, selectedPosts } ) {
-    const query = {
-        per_page:
-            limit - selectedPosts.length <= 0
-                ? 1 // Make sure that we always fetch at least one post
-                : limit - selectedPosts.length, // Fetch the remaining posts if above condition is not met
-        search,
-        exclude: selectedPosts,
-    };
+	const query = {
+		per_page:
+			limit - selectedPosts.length <= 0
+				? 1 // Make sure that we always fetch at least one post
+				: limit - selectedPosts.length, // Fetch the remaining posts if above condition is not met
+		search,
+		exclude: selectedPosts,
+	};
 
-    return query;
+	return query;
 }
