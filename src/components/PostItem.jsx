@@ -110,6 +110,7 @@ export default function PostItem( {
 							onChange={ ( event ) =>
 								selectCallback( event, post.id )
 							}
+							data-testid="posts-grid-item-select-button"
 						/>
 					</label>
 				) : null }
