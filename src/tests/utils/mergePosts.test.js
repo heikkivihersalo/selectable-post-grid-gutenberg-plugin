@@ -1,4 +1,4 @@
-import { mergePosts } from './mergePosts';
+import { mergePosts } from '../../utils/lib/mergePosts';
 import { describe, expect, it } from 'vitest'; // <-- **
 
 describe( '#mergePosts', () => {
@@ -25,8 +25,8 @@ describe( '#mergePosts', () => {
 		expect( result ).toEqual( [ 1, 2, 3 ] );
 	} );
 
-    it( 'should return only selected posts when no posts are provided', () => {
-        const result = mergePosts( { posts: [], selectedPosts, filter } );
-        expect( result ).toEqual( [ 4, 5, 6 ] );
-    } );
+	it( 'should return only selected posts when no posts are provided', () => {
+		const result = mergePosts( { posts: [], selectedPosts, filter } );
+		expect( result ).toEqual( [ 4, 5, 6 ] );
+	} );
 } );
