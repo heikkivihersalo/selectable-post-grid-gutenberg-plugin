@@ -7,9 +7,9 @@ afterEach( () => {
 } );
 
 // Mock WordPress modules
-vi.mock( '@wordpress/i18n', async () => {
-	return await vi.importActual( '@wordpress/i18n' );
-} );
+vi.mock( '@wordpress/i18n', () => ( {
+	__: ( text, namespace = '' ) => text,
+} ) );
 
 vi.mock( '@wordpress/element', async () => ( {
 	useState: ( state ) => {
@@ -17,3 +17,4 @@ vi.mock( '@wordpress/element', async () => ( {
 	},
 	useEffect: vi.fn(),
 } ) );
+ 
