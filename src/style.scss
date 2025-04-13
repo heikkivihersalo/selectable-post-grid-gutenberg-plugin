@@ -1,6 +1,6 @@
 .posts-grid {
     --_background-color: hsla(0, 0%, 95%, 1);
-    --_button-text-color: hsla(0, 0%, 0%, 0.55);
+    --_button-text-color: hsla(0, 0%, 0%, 1);
     --_icon-color: var(--_button-text-color);
 
     list-style: none;
@@ -21,19 +21,13 @@
     display: grid;
     grid-template-rows: fit-content(100%) fit-content(100%) auto fit-content(100%) fit-content(100%);
     background-color: var(--_background-color);
-
-    min-height: 615px;
 }
 
 .posts-grid-item:hover {
     --_background-color: hsla(0, 0%, 100%, 1);
     --_button-text-color: hsla(0, 0%, 0%, 1);
-    box-shadow: 4px 4px 40px 0px hsla(0, 0%, 0%, 0.1);
-    cursor: pointer;
-}
 
-.posts-grid-item:hover .posts-grid-item__link > span {
-    border-bottom: 1px solid hsla(0, 0%, 0%, 1);
+    cursor: pointer;
 }
 
 .posts-grid-item > *:not(.posts-grid-item__image) {
@@ -69,14 +63,10 @@
 }
 
 .posts-grid-item__categories a {
-    color: hsla(0, 0%, 0%, 0.55);
+    color: hsla(0, 0%, 0%, 1);
     text-decoration: none;
     font-size: var(--wp--preset--font-size--small);
     text-transform: uppercase;
-}
-
-.posts-grid-item__button {
-    border-top: 1px solid hsla(0, 0%, 0%, 0.1);
 }
 
 .posts-grid-item__link {

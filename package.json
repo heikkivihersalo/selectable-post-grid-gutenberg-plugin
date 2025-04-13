@@ -10,11 +10,19 @@
 		"format": "wp-scripts format",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
+		"test": "vitest",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^30.6.0"
+		"@testing-library/dom": "^10.4.0",
+		"@testing-library/jest-dom": "^6.6.3",
+		"@testing-library/react": "^16.1.0",
+		"@vitejs/plugin-react": "^4.3.4",
+		"@wordpress/block-editor": "^14.9.0",
+		"@wordpress/i18n": "^5.14.0",
+		"@wordpress/scripts": "^30.6.0",
+		"vitest": "^2.1.8"
 	}
 }

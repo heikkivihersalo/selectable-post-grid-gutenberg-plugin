@@ -28,8 +28,14 @@ export default function Controls( {
 	 * !NOTE These could be migrated to use Popover API if needed.
 	 */
 	return (
-		<div className="editor-posts-grid-controls">
-			<div className="editor-posts-grid-controls__search">
+		<div
+			className="editor-posts-grid-controls"
+			data-testid="posts-grid-filters"
+		>
+			<div
+				className="editor-posts-grid-controls__search"
+				data-testid="posts-grid-filter-search"
+			>
 				<label
 					className="editor-posts-grid-controls__label"
 					htmlFor="search"
@@ -38,13 +44,17 @@ export default function Controls( {
 				</label>
 				<input
 					className="editor-posts-grid-controls__input"
+					data-testid="posts-grid-filter-search-input"
 					type="text"
 					value={ search }
 					onChange={ ( event ) => setSearch( event.target.value ) }
 					placeholder={ __( 'Search posts...', 'posts-grid-test' ) }
 				/>
 			</div>
-			<div className="editor-posts-grid-controls__limit">
+			<div
+				className="editor-posts-grid-controls__limit"
+				data-testid="posts-grid-filter-limit"
+			>
 				<label
 					className="editor-posts-grid-controls__label"
 					htmlFor="limit"
@@ -53,6 +63,7 @@ export default function Controls( {
 				</label>
 				<select
 					className="editor-posts-grid-controls__input"
+					data-testid="posts-grid-filter-limit-input"
 					value={ limit }
 					onChange={ ( event ) => setLimit( event.target.value ) }
 				>
